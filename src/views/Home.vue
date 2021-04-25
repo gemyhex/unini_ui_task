@@ -80,7 +80,7 @@
 
       <div class="container-fluid full-cont">
         <div class="row">
-          <div class="col-lg-6 left-side">
+          <div class="col-lg-6 col-md-6 col-sm-6 left-side">
             <div class="row-item">
               <div class="logo">
                 <svg
@@ -148,7 +148,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 right-side">
+          <div class="col-lg-6 col-md-6 col-sm-6 right-side">
             <div class="cont-items">
               <h4>Integrate Your Own Hardware</h4>
               <p>
@@ -195,12 +195,12 @@
       <div class="full-cont">
         <div class="overlay"></div>
         <div class="row wrap">
-          <div class="col-lg-6 left-side">
+          <div class="col-lg-6 col-md-6 col-sm-6 left-side">
             <div class="cont">
               <img src="@/assets/mobiles.png" alt="" />
             </div>
           </div>
-          <div class="col-lg-6 right-side">
+          <div class="col-lg-6 col-md-6 col-sm-6 right-side">
             <div class="cont">
               <h5>Mobile app provided services</h5>
               <ul>
@@ -477,6 +477,7 @@
           .lists {
             width: 100%;
             display: flex;
+            justify-content: center;
             ul {
               width: fit-content;
               padding: 5px 30px;
@@ -547,6 +548,7 @@
     .wrap {
       margin: 0;
       .left-side {
+        height: fit-content;
         display: flex;
         justify-content: center;
         .cont {
@@ -561,7 +563,7 @@
       .right-side {
         text-align: left;
         display: flex;
-        justify-content: left;
+        justify-content: center;
         padding-top: 50px;
         .cont {
           h5 {
@@ -631,6 +633,22 @@
       }
     }
   }
+  .mobile-wrapper {
+    .full-cont {
+      .overlay {
+        top: 13%;
+        height: 60%;
+      }
+    }
+  }
+  .monitor-wrapper {
+    .full-cont {
+      .row {
+        .floating-sec {
+        }
+      }
+    }
+  }
 }
 @media screen and (max-width: 796px) {
   .main-slider {
@@ -643,6 +661,14 @@
       }
       .mobile-p {
         width: 30% !important;
+      }
+    }
+  }
+  .mobile-wrapper {
+    .full-cont {
+      .overlay {
+        top: 13%;
+        height: 60%;
       }
     }
   }
@@ -664,11 +690,39 @@
   }
 }
 
-@media screen and (max-width: 565px) {
+@media screen and (max-width: 575px) {
   .main-slider {
     .content-d {
       .mobile-p {
         width: 35% !important;
+      }
+    }
+  }
+  .mobile-wrapper {
+    .full-cont {
+      .wrap {
+        .right-side {
+          padding: 0;
+        }
+      }
+    }
+  }
+  .monitor-wrapper {
+    .full-cont {
+      .row {
+        .left-side {
+          .row-item {
+            justify-content: left;
+            margin: 40px 0;
+          }
+        }
+        .floating-sec {
+          width: 50%;
+          height: 50%;
+          top: 0;
+          right: 0;
+
+        }
       }
     }
   }
