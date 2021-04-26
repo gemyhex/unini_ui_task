@@ -174,7 +174,7 @@ export default {
           }
           &:hover {
             a {
-              color: rgb(233, 1, 1);
+              color: #1ebd77;
               transition: all 0.5s ease;
             }
           }
