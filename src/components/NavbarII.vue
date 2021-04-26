@@ -1,7 +1,7 @@
 <template>
-  <div class="header-wrap container">
-    <div class="left-side">
-      <div class="logo">
+  <nav class="header-wrapper">
+    <div class="top-nav px-5" id="topnav">
+      <router-link to="/" class="logo">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
@@ -17,75 +17,297 @@
             fill="#20313b"
           />
         </svg>
-      </div>
+      </router-link>
       <div class="links">
         <ul>
-          <li><a href="#">Solutions</a></li>
-          <li><a href="#">Resources</a></li>
-          <li><a href="#">Products</a></li>
+          <li>
+            <router-link to="/" class="active" @click="window.location.reload()"
+              >solutions</router-link
+            >
+          </li>
+          <li>
+            <router-link to="/movies" @click="window.location.reload()"
+              >resources</router-link
+            >
+          </li>
+          <li>
+            <router-link to="/tvshows" @click="window.location.reload()"
+              >products</router-link
+            >
+          </li>
         </ul>
       </div>
+      <div class="user-options">
+        <ul>
+          <li>
+            <a href="#"><i class="fa fa-search"></i></a>
+          </li>
+        </ul>
+      </div>
+      <a href="javascript:void(0);" class="icon" @click="openMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
     </div>
-    <div class="right-side">
-      <span class="fa fa-search"></span>
+  </nav>
+
+  <section class="side-wrapper" :style="{ width: clicked ? '75%' : '0' }">
+    <span id="closeMenu" @click="closeMenu()">
+      <i class="fa fa-times"></i>
+    </span>
+    <div class="side-menu">
+      <div class="links">
+        <ul>
+          <li>
+            <router-link to="/" class="active">solutions</router-link>
+          </li>
+          <li><router-link to="/movies">resources</router-link></li>
+          <li>
+            <router-link to="/tvshows">products</router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-p">
+        <div class="down-stand">
+          <div class="down-p">
+            <span><i class="fa fa-apple fa-2x"></i></span>
+            <a href="#"
+              >Download on the <br />
+              <span>App Store</span></a
+            >
+          </div>
+          <div class="down-p">
+            <span><i class="fa fa-play fa-2x"></i></span>
+            <a href="#"
+              >Get it on <br />
+              <span>Google Play</span></a
+            >
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      clicked: false,
+    };
+  },
+  methods: {
+    openMenu() {
+      this.clicked = true;
+    },
+    closeMenu() {
+      this.clicked = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.header-wrap {
+.header-wrapper {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .left-side {
-    height: 100%;
+  height: 100px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: 99;
+  padding: 20px;
+  .top-nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
     .logo {
-      width: 20%;
-      height: 55%;
-      &:hover {
-        animation: logoShake 0.8s infinite;
+      img {
+        width: 50px;
+        height: 50px;
+        animation: logoShake 0.7s infinite;
+        &:hover {
+          animation: logoShake 0.3s infinite;
+        }
       }
     }
+
     .links {
+      width: fit-content;
+      height: fit-content;
+      text-align: center;
+      padding-top: 10px;
+      margin: 0 auto;
       ul {
         width: fit-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 30px;
+        margin: 0;
         li {
-          width: fit-content;
-          margin: 0 15px;
+          display: inline-block;
+          text-transform: capitalize;
+          padding: 5px 15px;
           a {
+            color: white;
             text-decoration: none;
-            color: #fff;
+            font-weight: bold;
             &:hover {
               color: #1ebd77;
-              transition: all ease 0.5s;
+              transition: all 0.5s ease;
+            }
+          }
+        }
+      }
+    }
+    .user-options {
+      width: fit-content;
+      height: fit-content;
+      color: white;
+      padding-top: 12px;
+      ul {
+        li {
+          display: inline-block;
+          text-transform: capitalize;
+          text-align: center;
+          padding: 2px 8px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+          }
+          &:hover {
+            a {
+              color: rgb(233, 1, 1);
+              transition: all 0.5s ease;
+            }
+          }
+        }
+      }
+    }
+    .icon {
+      width: 30px;
+      height: 20px;
+      display: none;
+      color: white;
+      font-size: 1.75rem;
+      position: absolute;
+      right: 1rem;
+      outline: none;
+      text-decoration: none;
+    }
+  }
+}
+
+.side-wrapper {
+  width: 0;
+  height: 100vh;
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  overflow-x: hidden;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  #closeMenu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    i {
+      font-size: 1.5rem;
+      color: white;
+    }
+  }
+
+  .side-menu {
+    width: 80%;
+    padding: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+
+    .mobile-p {
+      width: 100%;
+      margin-top: 40px;
+      color: #fff;
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+        span {
+          font-weight: bold;
+        }
+      }
+      .down-stand {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8rem;
+
+        > div {
+          width: 100%;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #fff;
+          padding: 8px 10px;
+          font-size: 0.5rem;
+          margin-bottom: 10px;
+        }
+        .down-p {
+          a {
+            text-decoration: none;
+            color: black;
+            span {
+              font-weight: bold;
+            }
+          }
+          span {
+            margin-right: 5px;
+            i {
+              color: #1ebd77;
+            }
+          }
+          &:first-child {
+            border-right: 1px solid #f2f3f7;
+          }
+          &:hover {
+            background: #1ebd77;
+            transition: all ease 0.5s;
+            cursor: pointer;
+            a,
+            i {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    .links {
+      margin-top: 1rem;
+      ul {
+        width: 80%;
+        margin: 0;
+        li {
+          display: flex;
+          flex-direction: column;
+          text-transform: capitalize;
+          padding: 0.6rem;
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            &:hover {
+              color: rgb(233, 1, 1);
+              transition: all 0.5s ease;
             }
           }
         }
       }
     }
   }
-  .right-side {
-    span {
-      color: #fff;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
 }
+
 @keyframes logoShake {
   25% {
     transform: scale(1.1, 1.1);
@@ -98,6 +320,22 @@ export default {};
   }
   100% {
     transform: scale(1, 1);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .header-wrapper {
+    .top-nav {
+      .links {
+        display: none;
+      }
+      .user-options {
+        display: none;
+      }
+      .icon {
+        display: flex !important;
+      }
+    }
   }
 }
 </style>

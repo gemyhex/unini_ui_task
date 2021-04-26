@@ -383,7 +383,7 @@
   }
   .scroll-d {
     width: 8%;
-    height: 11%;
+    height: 10%;
     position: absolute;
     bottom: 0rem;
     left: 46%;
@@ -509,6 +509,7 @@
 .mobile-wrapper {
   width: 100%;
   margin-top: 50px;
+  padding-bottom: 50px;
   text-align: center;
   .title {
     position: relative;
@@ -645,6 +646,7 @@
     .full-cont {
       .row {
         .floating-sec {
+          //Some Code
         }
       }
     }
@@ -721,7 +723,27 @@
           height: 50%;
           top: 0;
           right: 0;
-
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 484px) {
+  .main-slider {
+    .content-d {
+      .wrapper {
+        .content {
+          width: 80%;
+          margin: 50% 10%;
+          h2 {
+            font-size: 3rem;
+          }
+          p {
+            font-size: 0.6rem;
+          }
+        }
+        .mobile-p {
+          display: none;
         }
       }
     }
@@ -731,7 +753,7 @@
 
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
+import Navbar from "@/components/NavbarII.vue";
 export default {
   name: "Home",
   components: {
